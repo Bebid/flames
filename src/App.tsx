@@ -1,9 +1,18 @@
 import { ChangeEvent, FormEvent, useState } from "react";
+import NameResult from "./components/NameResult";
+import Hero from "./components/Hero";
+import "./App.css";
 
 function App() {
     const [person1, setPerson1] = useState("");
     const [person2, setPerson2] = useState("");
-    const [result, setResult] = useState("");
+    const [result, setResult]: React.ReactElement<HTMLHeadingElement> =
+        useState();
+
+    const [identicalChars, setIdenticalChars] = useState([] as string[]);
+
+    const aPerson1Letters: string[] = person1.split("");
+    const aPerson2Letters: string[] = person2.split("");
 
     function submit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -18,18 +27,30 @@ function App() {
     }
 
     function testMatch() {
-        const aPerson1Letters: string[] = person1.split("");
-        const aPerson2Letters: string[] = person2.split("");
-
         const aIdenticalLetters: string[] = [];
-        const aResultText: string[] = [
-            "Friends",
-            "Lovers",
-            "Angry",
-            "Married",
-            "Engage",
-            "Sorry",
+        const aResultText: React.ReactElement<HTMLHeadingElement>[] = [
+            <h2>
+                You and your crush will end up being <strong>Friends</strong>
+            </h2>,
+            <h2>
+                Congrats! Your crush <strong>loves</strong> you back.
+            </h2>,
+            <h2>
+                You and your crush have <strong>Affections</strong> for each
+                other
+            </h2>,
+            <h2>
+                Both of you will end up getting <strong>Married</strong>!
+            </h2>,
+            <h2>
+                Sad to say, you both treat each other as an{" "}
+                <strong>Enemy</strong>
+            </h2>,
+            <h2>
+                Ahh, you have a crush on your <strong>Sibling</strong>
+            </h2>,
         ];
+
         let iResultCount: number = 0;
 
         aPerson1Letters.forEach((value) => {
@@ -49,6 +70,8 @@ function App() {
             }
         });
 
+        setIdenticalChars(aIdenticalLetters);
+
         if (iResultCount % 6 === 0) {
             setResult(aResultText[5]);
         } else {
@@ -58,9 +81,10 @@ function App() {
 
     return (
         <>
+            <Hero />
             <form onSubmit={submit}>
                 <div>
-                    <label htmlFor="person1">Person 1</label>
+                    <label htmlFor="person1">Your name</label>
                     <input
                         id="person1"
                         name="person1"
@@ -68,7 +92,7 @@ function App() {
                     ></input>
                 </div>
                 <div>
-                    <label htmlFor="person2">Person 2</label>
+                    <label htmlFor="person2">Your crush name</label>
                     <input
                         id="person2"
                         name="person2"
@@ -76,8 +100,21 @@ function App() {
                     ></input>
                 </div>
                 <button onClick={testMatch}>Test Match</button>
-                <h4>{result}</h4>
             </form>
+
+            {result && person1 && person2 && (
+                <div>
+                    {result}
+                    <NameResult
+                        chars={aPerson1Letters}
+                        identicalChars={identicalChars}
+                    ></NameResult>
+                    <NameResult
+                        chars={aPerson2Letters}
+                        identicalChars={identicalChars}
+                    ></NameResult>
+                </div>
+            )}
         </>
     );
 }
