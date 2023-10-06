@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,900&family=Inter:wght@400;500;600;700&display=swap");
+
 * {
     box-sizing: border-box;
     padding: 0;
@@ -9,4 +11,91 @@ button {
     font-size: 16px;
     padding: 9px 12px;
     border: 1px solid #eee;
+}
+
+body {
+    font-family: "DM Sans";
+    font-size: 24px;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10rem 1rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.headline {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+/* form */
+#form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#form input,
+#form button {
+    border-radius: 6px;
+    padding: 1rem 1.5rem;
+    min-width: 320px;
+}
+
+.btn-primary {
+    background-color: #ef00c8;
+    border: 1px solid #ef00c8;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-primary:hover,
+.btn-primary:active {
+    background-color: #ff00d6;
+    border: 1px solid #ff00d6;
+}
+
+strong {
+    color: #ff00d6;
+    font-weight: 600;
+}
+
+/* result */
+.name-results {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.name-results > div > p {
+    margin-bottom: 1rem;
+}
+.name-result {
+    display: flex;
+    gap: 8px;
+    font-size: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.name-result span {
+    text-transform: uppercase;
+    background-color: #eee;
+    border-radius: 6px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
