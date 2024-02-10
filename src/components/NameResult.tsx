@@ -15,7 +15,7 @@ const strikeClass = {
 };
 
 const spaceClass = {
-    backgroundColor: "white",
+    backgroundColor: "var(--background)",
 };
 
 function generateLetterClass(

@@ -44,7 +44,7 @@ function Result({
                 <div className="headline">
                     {aResultText[getResultIndex()]}
                     <p>
-                        Names in pink are found in both of your names. <br />
+                        Letters in pink are found in both of your names. <br />
                         These are the letters we use to calculate the result.
                     </p>
                 </div>

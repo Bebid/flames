@@ -1,12 +1,14 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import "./App.css";
 import Result from "./components/Result";
+import ToggleButton from "./components/toggleButton";
 
 function App() {
     const [person1, setPerson1] = useState("");
     const [person2, setPerson2] = useState("");
     const [formSubmitted, setFormSubmitted] = useState<boolean>(false);
     const [identicalCount, setIdenticalCount] = useState<number>(0);
+    const [isDarkTheme, setIsDarkTheme] = useState(false);
 
     const [identicalChars, setIdenticalChars] = useState([] as string[]);
 
@@ -53,13 +55,16 @@ function App() {
     }
 
     function resetForm(status: boolean) {
-        setPerson1("");
-        setPerson2("");
         setFormSubmitted(status);
     }
 
+    function setDarkTheme(state: boolean) {
+        setIsDarkTheme(state);
+    }
+
     return (
-        <>
+        <div data-theme={isDarkTheme ? "dark" : "light"}>
+            <ToggleButton action={setDarkTheme}></ToggleButton>
             {formSubmitted ? (
                 <Result
                     identicalChars={identicalChars}
@@ -88,6 +93,7 @@ function App() {
                                         name="person1"
                                         onChange={changePerson1}
                                         placeholder="Your name"
+                                        value={person1}
                                     ></input>
                                 </label>
                             </div>
@@ -98,6 +104,7 @@ function App() {
                                         name="person2"
                                         onChange={changePerson2}
                                         placeholder="Your crush name"
+                                        value={person2}
                                     ></input>
                                 </label>
                             </div>
@@ -108,7 +115,7 @@ function App() {
                     </div>
                 </section>
             )}
-        </>
+        </div>
     );
 }
 
